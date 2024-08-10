@@ -1,7 +1,7 @@
-from classes import Tile, Cell
 import glob
 import random
 
+from classes import Tile, Cell
 from config import *
 
 # Create Tile Objects
