@@ -1,9 +1,8 @@
 from classes import Tile, Cell
 import glob
+import random
 
-
-grid_width = 4
-grid_height = 4
+from config import *
 
 # Create Tile Objects
 tiles = []
@@ -13,9 +12,9 @@ names = ["up", "right", "down", "left", "all",
 cells = []
 
 for num, file in enumerate(glob.glob("images/*.jpg")):
-    tile = Tile(file, names[num])
+    tile = Tile(file, names[num-1])
     tiles.append(tile)
 
-for i in range(grid_width * grid_height):
+for i in range(GRID_WIDTH * GRID_HEIGHT):
     cell = Cell(i)
     cells.append(cell)
