@@ -1,7 +1,6 @@
 import pandas as pd
 
 from config import *
-from functions import *
 
 # Tile image objects displayed within cells
 class Tile:
@@ -15,10 +14,10 @@ class Tile:
         self.left = []
 
     def __repr__(self):
-        return f'{self.name}: {self.path}'
+        return self.name
     
     def __str__(self):
-        return f'{self.name}: {self.path}'
+        return self.name.upper()
 
     def tile_data_process(data, tile_list):
         dtypes = {
@@ -34,6 +33,9 @@ class Tile:
 
             tile.edges = edges.tolist()
             print(tile, tile.edges)
+    
+    def compare_tiles():
+        pass
 
 # Cells positioned on grid to hold tile objects
 class Cell:
