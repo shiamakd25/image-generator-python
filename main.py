@@ -12,7 +12,7 @@ names = ["up", "right", "down", "left", "all",
 cells = []
 
 for num, file in enumerate(glob.glob("images/*.jpg")):
-    tile = Tile(file, names[num-1])
+    tile = Tile(file, names[num])
     tiles.append(tile)
 
 Tile.tile_data_process('tile_config.csv', tiles)
