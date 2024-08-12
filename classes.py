@@ -12,6 +12,7 @@ class Tile:
         self.right = []
         self.down = []
         self.left = []
+        self.weight = None
 
     def __repr__(self):
         return self.name
@@ -30,12 +31,20 @@ class Tile:
         df.columns = df.columns.str.strip()
         for index, tile in enumerate(tile_list):
             edges = df.loc[df['index'] == index + 1, ['up_edge', 'right_edge', 'down_edge', 'left_edge']].values.flatten()
-
             tile.edges = edges.tolist()
-            print(tile, tile.edges)
+            weight = df.loc[df['index'] == index + 1, ['weightage']].squeeze()
+            tile.weight = weight
     
-    def compare_tiles():
-        pass
+    def compare_tiles(self, tiles_list):
+        for tile in tiles_list:
+            if self.edges[0] == tile.edges[2]:
+                self.up.append(tile)
+            if self.edges[1] == tile.edges[3]:
+                self.right.append(tile)
+            if self.edges[2] == tile.edges[0]:
+                self.down.append(tile)
+            if self.edges[3] == tile.edges[1]:
+                self.left.append(tile)
 
 # Cells positioned on grid to hold tile objects
 class Cell:
