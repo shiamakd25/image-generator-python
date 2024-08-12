@@ -52,6 +52,13 @@ class Cell:
         self.position = position
         self.tile = None
         self.options = TILES_NUM
+        self.collapsed = False
 
     def __repr__(self):
         return f'{self.position} ({self.tile})'    
+
+    def check_collapsed(self):
+        if self.options == 1:
+            self.collapsed = True
+        else:
+            self.collapsed = False
