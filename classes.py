@@ -1,6 +1,7 @@
 import pandas as pd
 
 from config import *
+from functions import *
 
 # Tile image objects displayed within cells
 class Tile:
@@ -105,6 +106,18 @@ class Cell:
         else:
             self.collapsed = False
 
-    def cell_options(self):
-        options = None
+    def cell_options(self, cells_list):
+        if self.cell_up(cells_list).tile:
+            tile_up = self.cell_up(cells_list).tile
+            up_options = tile_up.down
+        if self.cell_right(cells_list.tile):
+            tile_right = self.cell_up(cells_list).tile
+            right_options = tile_right.left
+        if self.cell_down(cells_list):
+            tile_down = self.cell_down(cells_list)
+            down_options = tile_down.up
+        if self.cell_left(cells_list):
+            tile_left = self.cell_left(cells_list)
+            left_options = tile_left.right
+        options = list_intersection([up_options, right_options, down_options, left_options,], 1)
         self.options = options
