@@ -17,6 +17,9 @@ for num, file in enumerate(glob.glob("images/*.jpg")):
 
 Tile.tile_data_process('tile_config.csv', tiles)
 
+for tile in tiles:
+    tile.compare_tiles(tiles)
+
 for i in range(GRID_WIDTH * GRID_HEIGHT):
     cell = Cell(i)
     cells.append(cell)
