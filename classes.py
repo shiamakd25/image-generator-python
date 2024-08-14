@@ -116,6 +116,7 @@ class Cell:
             left_options = tile_left.right
         options = list_intersection([up_options, right_options, down_options, left_options,], 1)
         self.options = options
+        self.entropy = len(self.options)
 
     def pick_tile(self):
         weights = TILES_DF['weightage'].to_list()
