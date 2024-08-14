@@ -109,10 +109,10 @@ class Cell:
             tile_right = self.cell_up(cells_list).tile
             right_options = tile_right.left
         if self.cell_down(cells_list):
-            tile_down = self.cell_down(cells_list)
+            tile_down = self.cell_down(cells_list).tile
             down_options = tile_down.up
         if self.cell_left(cells_list):
-            tile_left = self.cell_left(cells_list)
+            tile_left = self.cell_left(cells_list).tile
             left_options = tile_left.right
         options = list_intersection([up_options, right_options, down_options, left_options,], 1)
         self.options = options
