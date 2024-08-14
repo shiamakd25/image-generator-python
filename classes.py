@@ -1,4 +1,5 @@
 import pandas as pd
+import random
 
 from config import *
 from functions import *
@@ -21,19 +22,12 @@ class Tile:
     def __str__(self):
         return self.name.upper()
 
-    def tile_data_process(data, tile_list):
-        dtypes = {
-            'up_edge': str,
-            'right_edge': str,
-            'down_edge': str,
-            'left_edge': str
-        }
-        df = pd.read_csv(data, dtype=dtypes)
-        df.columns = df.columns.str.strip()
+    def tile_data_process(tile_list):
         for index, tile in enumerate(tile_list):
-            edges = df.loc[df['index'] == index + 1, ['up_edge', 'right_edge', 'down_edge', 'left_edge']].values.flatten()
+            edges = TILES_DF.loc[TILES_DF['index'] == index + 1, 
+                                 ['up_edge', 'right_edge', 'down_edge', 'left_edge']].values.flatten()
             tile.edges = edges.tolist()
-            weight = df.loc[df['index'] == index + 1, ['weightage']].squeeze()
+            weight = TILES_DF.loc[TILES_DF['index'] == index + 1, ['weightage']].squeeze()
             tile.weight = weight
     
     def compare_tiles(self, tiles_list):
@@ -53,6 +47,7 @@ class Cell:
         self.position = position
         self.tile = None
         self.options = TILES_NUM
+        self.entropy = len(self.options)
         self.collapsed = False
 
     def __repr__(self):
@@ -121,3 +116,7 @@ class Cell:
             left_options = tile_left.right
         options = list_intersection([up_options, right_options, down_options, left_options,], 1)
         self.options = options
+
+    def pick_tile(self):
+        weights = TILES_DF['weightage'].to_list()
+        self.tile = random.choices(self.options, weights=weights)
