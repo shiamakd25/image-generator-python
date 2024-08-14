@@ -6,3 +6,11 @@ def list_intersection(lists, min_length):
     for lst in filtered_lists[1:]:
         common_set.intersection_update(lst)   
     return common_set
+
+def find_min_attr(list, attribute):
+    attr_list = []
+    for elem in list:
+        attr = getattr(elem, attribute)
+        attr_list.append(attr)
+    min_attr = min(attr_list)
+    return min_attr
