@@ -10,6 +10,7 @@ names = ["up", "right", "down", "left", "all",
          "right_end", "down_end", "left_end", "up_end", "blank"]
 
 cells = []
+collapsed_cells = []
 
 for num, file in enumerate(glob.glob("images/*.jpg")):
     tile = Tile(file, names[num])
@@ -23,3 +24,6 @@ for tile in tiles:
 for i in range(GRID_WIDTH * GRID_HEIGHT):
     cell = Cell(i)
     cells.append(cell)
+
+while len(collapsed_cells) < GRID_WIDTH * GRID_HEIGHT:
+    pass
