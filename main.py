@@ -26,4 +26,6 @@ for i in range(GRID_WIDTH * GRID_HEIGHT):
     cells.append(cell)
 
 while len(collapsed_cells) < GRID_WIDTH * GRID_HEIGHT:
-    pass
+    for cell in cells:
+        cell.check_collapsed()
+        cell.cell_options(cells)
